@@ -108,7 +108,7 @@ function getSimplex(quantDec, quantRes, choice) {
   );
   senseTable(hasil_array, variabel_tipe, variabel_awal, quantDec, bValues);
     $(".shows").append(
-      '<br><div class="row" align="center" ><button type="button" id="showss" class="btn btn-primary" onclick="hides()">Hide Table</button></div>'
+      '<br><div class="row" align="center" ><button type="button" id="showss" class="btn btn-primary" onclick="hides()">نمایش جدول</button></div>'
     );
   if (choice == 1) {
     $(".container").append(allTables[stopConditionValue]);
@@ -193,7 +193,7 @@ function printResults(matriz, quantDec, quantRes, jumlah_kolom, base) {
   }
 
   $("#results").append(
-    '<div class="col-md-12">The optimal solution is Z = ' +
+    '<div class="col-md-12">جواب بهین مسئله  Z = ' +
       Math.round(zValue * 100) / 100 +
       "</div><br>"
   );
@@ -368,10 +368,10 @@ function pauseSolution() {
   $(".container").remove();
 
   $("body").append(
-    '<div class="container"><div class="row"><div class="offset-md-2 col-md-8 offset-md-2"><h1>Solução Impossível</h1></div></div></div>'
+    '<div class="container"><div class="row"><div class="offset-md-2 col-md-8 offset-md-2"><h1>غیر ممکن</h1></div></div></div>'
   );
   $(".container").append(
-    '<div class="row"><div class="offset-md-4 col-md-4 offset-md-4"><button id="back" class="btn-inicio" onclick="location.reload();" >Voltar</button></div>	</div>'
+    '<div class="row"><div class="offset-md-4 col-md-4 offset-md-4"><button id="back" class="btn-inicio" onclick="location.reload();" >شروع دوباره</button></div>	</div>'
   );
 }
 
@@ -379,7 +379,6 @@ function PrimeiroPasso() {
   $(document).ready(function () {
     var quantDec = $("input[name=quantDecision]").val();
     if (quantDec.length == 0 || quantDec == "0") {
-      alert("Você precisa inserir valores na variavel de decisão");
       return;
     } else {
       quantDec = parseFloat(quantDec);
@@ -390,7 +389,6 @@ function PrimeiroPasso() {
 
     var quantRes = $("input[name=quantRestriction]").val();
     if (quantRes.length == 0 || quantRes == "0") {
-      alert("Você precisa inserir valores na variavel de restrição");
       return;
     } else {
       quantRes = parseFloat(quantRes);
@@ -465,7 +463,7 @@ function generateFunctionZ(quantDec) {
 
 function generateRestrictions(quantDec, quantRes) {
   $("#inputValues").append(
-    '<div class="row"><div class="col-md-12 mb-3 mt-3" id="divRestTitle"><h5>Enter the Restrictions:</h5></div></div>'
+    '<div class="row"><div class="col-md-12 mb-3 mt-3" id="divRestTitle"><h5>محدودیت ها را وارد کنید:\n</h5></div></div>'
   );
 
   for (let i = 1; i <= quantRes; i++) {
@@ -574,7 +572,7 @@ function senseTable(matriz, head, base, quantDec, bValues) {
   senseMatriz.unshift(["Resources", "Shadow Price", "Min", "Max", "Initial"]);
 
   $(".container").append(
-    '<hr><div id="divSenseTable" class="offset-md-2 col-md-8 offset-md-2 table-responsive"><div class="row"><h3>Sensitivity Table:</h3></div></div>'
+    '<hr><div id="divSenseTable" class="offset-md-2 col-md-8 offset-md-2 table-responsive"><div class="row"><h3>جدول حساسیت:</h3></div></div>'
   );
   $(".container").append(
     '<div class="row"><div id="divSenseTable" class="offset-md-2 col-md-8 offset-md-2 table-responsive"><table id="senseTable" class="table table-bordered"></table></div></div><hr>'

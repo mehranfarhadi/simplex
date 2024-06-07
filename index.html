@@ -1,141 +1,287 @@
 <!DOCTYPE html>
-<html lang="pt">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-<link href="https://fonts.googleapis.com/css?family=Acme:300,300i,400,400i,600,600i,700,700i|Changa+One:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-      crossorigin="anonymous"
-      />
-    <link rel="stylesheet" type="text/css" href="css/simplex.css" />
+<html lang="fa">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://fonts.googleapis.com/css?family=Acme|Changa+One|Poppins|Vazir&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          crossorigin="anonymous"
+  />
+  <link rel="stylesheet" type="text/css" href="css/simplex.css" />
 
-    <title>Simplex</title>
-  </head>
-  <body>
-    <h1></h1>
-    <h1>Simplex Calculator</h1>
-    <h3>by Group 4</h3>
-    <nav class="navbar navbar-light col-md-12">
-      <button onclick="location.reload();" class="btn btn-inicio">Start</button>
-    </nav>
-    <div class="sidebar">
-      <ul>
-      <li>Variables : decision variables that we are trying to optimize</li>
-      <li>Constraints : limitations or conditions that must be satisfied in order to find a feasible solution to a problem. </li>
-      <li>X1, X2, and so on : typically represent the decision variables in a linear programming problem.</li>
-      <li>Z : objective function, which is the linear function that we are trying to optimize.</li>
-    </ul>
-        </div>
+  <title>Simplex</title>
+  <style>
+    body {
+      font-family: 'Vazir', 'Acme', serif;
+      text-align: center;
+      color: #393053;
+      font-size: 20px;
+      direction: ltr;
+    }
+
+    h1 {
+      font-size: 70px;
+      position: relative;
+      margin-right: 150px;
+    }
+
+    h3 {
+      position: relative;
+      margin-right: 120px;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 350px;
+      width: 350px;
+      margin-right: 70px;
+      margin-top: -30px;
+      float: right;
+      background-color: #FFF4E0;
+      border: 5px solid #5D6063;
+      border-radius: 5px;
+    }
+
+    .container {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .row {
+      margin-right: -30px;
+    }
+
+    .btn-next,
+    .btn-inicio {
+      background-color: #CCD6A6;
+      color: rgb(0, 0, 0);
+      border-radius: 5px;
+      border: 1px solid #000000;
+      font-weight: 700;
+    }
+
+    .btn-next:hover,
+    .btn-inicio:hover {
+      background-color: #CCD6A6;
+    }
+
+    nav {
+      margin-right: 56%;
+    }
+
+    .text-it {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    #inputValues {
+      position: relative;
+      margin-right: 150px;
+    }
+
+    #showss {
+      margin: 0;
+      position: relative;
+      top: 80%;
+      right: 50%;
+      -ms-transform: translate(50%, -50%);
+      transform: translate(50%, -50%);
+      background-color: #CCD6A6;
+    }
+
+    #tableInicial {
+      margin-top: 10px;
+    }
+
+    table {
+      table-layout: fixed;
+      border-width: 1px;
+      border-color: #000000;
+      border-collapse: collapse;
+    }
+
+    tr,
+    th,
+    td {
+      background-color: #FFF4E0;
+      border-style: solid;
+      border-color: #000000;
+    }
+
+    table td:first-child,
+    table tr:first-child,
+    table tr:first-child td:first-child {
+      background-color: #FFF4E0;
+      border-style: solid;
+      border-color: #000000;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    button {
+      margin: 3px;
+      font-size: 22px;
+    }
+
+    input {
+      width: 40vh;
+      border-radius: 4px;
+      text-decoration: none;
+      box-shadow: none;
+      text-align: center;
+      color: #0D0D0D;
+    }
+
+    span.input-group-text {
+      font-size: 22px;
+    }
+
+    button#firstPhase,
+    button#solveSimplex,
+    button#stepByStep,
+    button#again {
+      font-size: 18px;
+    }
+
+    .input-val {
+      height: 30px;
+      width: 100px;
+      margin-left: 10px;
+    }
+
+    .input-plus {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 10px;
+    }
+
+    .m-text {
+      margin-left: 10px;
+    }
+
+    .equal-m {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        margin-bottom: 20px;
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+      }
+
+      h1,
+      h3 {
+        margin-right: 0;
+        font-size: 50px;
+      }
+
+      #inputValues {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .btn-inicio,
+      .btn-next {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      .sidebar {
+        text-align: right;
+
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-light col-md-12">
+  <button onclick="location.reload();" class="btn btn-inicio">شروع</button>
+</nav>
+
+<br />
+<div class="shows"></div>
+<div class="container">
+  <div id="startInputs">
     <br />
-    <div class="shows">
-    </div>
-    <div class="container">
-      <div id="startInputs">
-        <br />
 
-        <div class="row">
-          <div class="col-md-12">
-            <label class="col-md-6">Number of Variables</label>
-          </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label class="col-md-6">تعداد متغیر‌ها</label>
+        <input type="number" id="quantDecision" name="quantDecision" class="form-control" />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12">
+        <label class="col-md-6">مقدار محدودیت ها</label>
+        <input type="number" id="quantRestriction" name="quantRestriction" class="form-control" />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12">
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="max" name="maxMin" class="custom-control-input" checked />
+          <label class="custom-control-label" for="max">Maximize</label>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <input type="number" id="quantDecision" name="quantDecision" />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-md-12">
-            <label class="col-md-6">Amount of Constraints</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <input
-              type="number"
-              id="quantRestriction"
-              name="quantRestriction"
-            />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-md-12">
-            <div class="custom-control custom-radio custom-control-inline">
-              <input
-                type="radio"
-                id="max"
-                name="maxMin"
-                class="custom-control-input"
-                checked
-              />
-              <label class="custom-control-label" for="max">Maximize</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input
-                type="radio"
-                id="min"
-                name="maxMin"
-                class="custom-control-input"
-              />
-              <label class="custom-control-label" for="min">Minimize</label>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="offset-md-3 col-md-6 offset-md-3 mt-3">
-            <button
-              id="PrimeiroPasso"
-              onclick="verifyValues()"
-              class="btn btn-next"
-            >
-              Continue
-            </button>
-          </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="min" name="maxMin" class="custom-control-input" />
+          <label class="custom-control-label" for="min">Minimize</label>
         </div>
       </div>
-      <div id="auxDiv" style="display: none"></div>
     </div>
+    <div class="row">
+      <div class="col-md-12 mt-3">
+        <button id="PrimeiroPasso" onclick="verifyValues()" class="btn btn-next btn-block">
+          تایین تابع هدف و محدودیت‌ها
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="auxDiv" style="display: none"></div>
+</div>
 <!-- connect to JavaScript -->
-    <script src="js/simplex.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-      crossorigin="anonymous"
-    ></script>
-    <script type="text/javascript">
-      function verifyValues() {
-        if (
-          $("#quantRestriction").val() > 10 ||
-          $("#quantRestriction").val() < 1 ||
-          $("#quantDecision").val() > 10 ||
-          $("#quantDecision").val() < 1
-        ) {
-          alert(
-            "Enter a number of Constraint and Decision variables greater than 1 and less than 10"
-          );
-        } else {
-          PrimeiroPasso();
-        }
-      }
-    </script>
-  </body>
+<script src="js/simplex.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  function verifyValues() {
+    if (
+            $("#quantRestriction").val() > 10 ||
+            $("#quantRestriction").val() < 1 ||
+            $("#quantDecision").val() > 10 ||
+            $("#quantDecision").val() < 1
+    ) {
+      alert("تعدادی متغیر Constraint و Decision بزرگتر از 1 و کمتر از 10 وارد کنید");
+    } else {
+      PrimeiroPasso();
+    }
+  }
+</script>
+</body>
 </html>
