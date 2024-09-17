@@ -50,27 +50,35 @@
     }
 
     .container {
+
+      justify-content: center;  /* Horizontally centers the button */
+      align-items: center;      /* Vertically centers the button */
+
       width: 100%;
-      padding-right: 15px;
-      padding-left: 15px;
+      padding-right: 1px;
+      padding-left: 1px;
     }
 
     .row {
+      color: #FFF4E0;
       margin-right: -30px;
     }
 
     .btn-next,
     .btn-inicio {
-      background-color: #CCD6A6;
-      color: rgb(0, 0, 0);
+      align-content: center;
+      background-color: #FFF4E0;
+      color: rgb(122, 85, 85);
       border-radius: 5px;
-      border: 1px solid #000000;
+      border: 1px solid #1c47b8;
       font-weight: 700;
     }
 
     .btn-next:hover,
     .btn-inicio:hover {
-      background-color: #CCD6A6;
+      background-color: #1c47b8;
+      border: 1px solid #FFF4E0;
+      color: #FFF4E0;
     }
 
     nav {
@@ -257,7 +265,7 @@
     <div class="row">
       <div class="col-md-12 mt-3">
         <button id="PrimeiroPasso" onclick="verifyValues()" class="btn btn-next btn-block">
-          تایین تابع هدف و محدودیت‌ها
+          تعیین تابع هدف و محدودیت‌ها
         </button>
       </div>
     </div>
@@ -277,7 +285,7 @@
             $("#quantDecision").val() > 10 ||
             $("#quantDecision").val() < 1
     ) {
-      alert("تعدادی متغیر Constraint و Decision بزرگتر از 1 و کمتر از 10 وارد کنید");
+      alert("تعدادی متغیر محدودیت ها بزرگتر از 1 و کمتر از 10 وارد کنید");
     } else {
       PrimeiroPasso();
     }

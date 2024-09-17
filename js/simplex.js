@@ -33,7 +33,7 @@ function getSimplex(quantDec, quantRes, choice) {
 
   matrizToTable(
     hasil_array,
-    "Initial",
+    "اولیه",
     variabel_tipe,
     variabel_awal,
     jumlah_baris,
@@ -86,7 +86,7 @@ function getSimplex(quantDec, quantRes, choice) {
     if (hasNegativeOrPositive == true) {
       matrizToTable(
         hasil_array,
-        "Parcial" + stopConditionValue,
+        "شماره " + stopConditionValue,
         variabel_tipe,
         variabel_awal,
         jumlah_baris,
@@ -99,7 +99,7 @@ function getSimplex(quantDec, quantRes, choice) {
 
   matrizToTable(
     hasil_array,
-    "Final",
+    "نهایی",
     variabel_tipe,
     variabel_awal,
     jumlah_baris,
@@ -197,7 +197,7 @@ function printResults(matriz, quantDec, quantRes, jumlah_kolom, base) {
       Math.round(zValue * 100) / 100 +
       "</div><br>"
   );
-  $("#results").append("<div> Basic Variables </div>");
+  $("#results").append("<div> متغییر های پایه ای </div>");
   for (let i = 0; i < quantRes; i++) {
     var baseName = base[i];
     var baseValue = matriz[i][jumlah_kolom - 1];
@@ -417,20 +417,20 @@ function PrimeiroPasso() {
         quantDec +
         "," +
         quantRes +
-        ',2)" class="btn btn-primary btn-next">Generate Tables</button></div>'
+        ',2)" class="btn btn-primary btn-next">محاسبه با روش سیمپلکس</button></div>'
     );
   });
 }
 var z= 0;
 function hides(){
   if(z==0){
-    $("#showss").text('Show Table');
+    $("#showss").text('نمایش جداول');
     $(".container").hide();
     z=1;
   }
   else{
     z=0;
-    $("#showss").text('Hide Table');
+    $("#showss").text('پنهان کردن جداول');
     $(".container").show();
   }
 }
@@ -569,13 +569,13 @@ function senseTable(matriz, head, base, quantDec, bValues) {
     senseMatriz[i].push(bValues[i]);
   }
 
-  senseMatriz.unshift(["Resources", "Shadow Price", "Min", "Max", "Initial"]);
+  senseMatriz.unshift(["منبع", "قیمت پنهان", "کمترین", "بیشترین", "اولیه"]);
 
   $(".container").append(
-    '<hr><div id="divSenseTable" class="offset-md-2 col-md-8 offset-md-2 table-responsive"><div class="row"><h3>جدول حساسیت:</h3></div></div>'
+    '<hr><div id="divSenseTable" class="offset-md-2 col-md-8 offset-md-2 table-responsive table-color"><div class="row"><h3>جدول حساسیت:</h3></div></div>'
   );
   $(".container").append(
-    '<div class="row"><div id="divSenseTable" class="offset-md-2 col-md-8 offset-md-2 table-responsive"><table id="senseTable" class="table table-bordered"></table></div></div><hr>'
+    '<div class="row"><div id="divSenseTable" class="offset-md-2 col-md-8 offset-md-2 table-responsive table-color"><table id="senseTable" class="table table-bordered"></table></div></div><hr>'
   );
   var table = $("#senseTable");
   var row, cell;
