@@ -31,7 +31,7 @@ function getSimplex(quantDec, quantRes, choice) {
     bValues.push(hasil_array[i][jumlah_kolom - 1]);
   }
 
-  matrizToTable(
+  matrixToTable(
     hasil_array,
     "اولیه",
     variabel_tipe,
@@ -84,7 +84,7 @@ function getSimplex(quantDec, quantRes, choice) {
     }
 
     if (hasNegativeOrPositive == true) {
-      matrizToTable(
+      matrixToTable(
         hasil_array,
         "شماره " + stopConditionValue,
         variabel_tipe,
@@ -97,7 +97,7 @@ function getSimplex(quantDec, quantRes, choice) {
     }
   } while (hasNegativeOrPositive == true);
 
-  matrizToTable(
+  matrixToTable(
     hasil_array,
     "نهایی",
     variabel_tipe,
@@ -121,13 +121,13 @@ function getSimplex(quantDec, quantRes, choice) {
   }
   6;
 }
-function matrizToTable(matriz, divName, head, base, jumlah_baris, allTables, aux) {
+function matrixToTable(matriz, divName, head, base, jumlah_baris, allTables, aux) {
   $("#auxDiv").html(
     '<div class="row"><div id="divTable' +
       divName +
-      '" class="offset-md-2 col-md-8 offset-md-2 table-responsive"><div class="row"><h3>Table ' +
+      '" class="offset-md-2 col-md-8 offset-md-2 table-responsive"><div class="row"><h3>جدول ' +
       divName +
-      ':</h3></div><table id="table' +
+      '</h3></div><table id="table' +
       divName +
       '" class="table table-bordered"></table></div></div>'
   );
@@ -215,14 +215,14 @@ function staticTableVars(quantDec, quantRes) {
     base.push("R" + (i + 1));
   }
   base.push("Z");
-  head.push("Base");
+  head.push("BV");
   for (let i = 0; i < quantDec; i++) {
     head.push("X" + (i + 1));
   }
   for (let i = 0; i < quantRes; i++) {
     head.push("R" + (i + 1));
   }
-  head.push("B");
+  head.push("RHs");
 
   return [base, head];
 }
