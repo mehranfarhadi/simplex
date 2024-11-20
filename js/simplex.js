@@ -119,7 +119,7 @@ function getSimplex(quantDec, quantRes, choice) {
     }
     printResults(hasil_array, quantDec, quantRes, jumlah_kolom, variabel_awal);
   }
-  6;
+  ;
 }
 function matrixToTable(matriz, divName, head, base, jumlah_baris, allTables, aux) {
   $("#auxDiv").html(
